@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React from "react";
 import styled from "styled-components";
 
 // TODO: style.js로 분리하기
@@ -25,7 +25,6 @@ function Loader() {
 
 // TODO: component로 분리하기
 function MealCard({ mealInfo }) {
-	console.log(mealInfo);
 	const { productName, description, event, fixedPrice, image, originalPrice } = mealInfo;
 	return (
 		<MealCardStyled>
@@ -64,4 +63,4 @@ function MealContainer({ meals }) {
 	);
 }
 
-export default memo(MealContainer);
+export default MealContainer;
