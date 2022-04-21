@@ -1,12 +1,11 @@
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import BestMealContainer from "./components/BestMealContainer";
-import MealContainer from "/components/MealContainer";
-
-// TODO: contant로 빼기
-const MOCK_SERVER_URL = "https://c8611651-19e0-4ab7-9b27-51a7c3fe2fa6.mock.pstmn.io/"; // TODO: .env파일로 빼기
+import MealContainer from "./components/MealContainer";
+import { MOCK_SERVER_URL } from "./constant";
 
 function App() {
+  console.log(process.env.REACT_APP_SERVER_URL);
   const [meals, setMeals] = useState({
     mealHeader: "",
     mealCards: [],
@@ -29,13 +28,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    fetchCategoryMeal();
+    // fetchCategoryMeal();
   }, []);
   return (
     <>
-      <BestMealContainer />
+      {/* <BestMealContainer />
       <MealContainer meals={meals} />
-      <div className="Modal"></div>
+      <div className="Modal"></div> */}
     </>
   );
 }
