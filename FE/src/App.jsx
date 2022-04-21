@@ -3,9 +3,9 @@ import axios from "axios";
 import BestMealContainer from "./components/BestMealContainer";
 import MealContainer from "./components/MealContainer";
 import { MOCK_SERVER_URL } from "./constant";
+import { setDefaultMealImage } from "util";
 
 function App() {
-  console.log(process.env.REACT_APP_SERVER_URL);
   const [meals, setMeals] = useState({
     mealHeader: "",
     mealCards: [],
@@ -28,13 +28,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // fetchCategoryMeal();
+    fetchCategoryMeal();
   }, []);
   return (
     <>
-      {/* <BestMealContainer />
+      <BestMealContainer />
       <MealContainer meals={meals} />
-      <div className="Modal"></div> */}
+      <div className="Modal"></div>
     </>
   );
 }
