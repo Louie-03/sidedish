@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
-import BestMealContainer from "./components/BestMealContainer";
-import MealContainer from "./components/MealContainer";
-import { MOCK_SERVER_URL } from "./constant";
-import { setDefaultMealImage } from "util";
+import BestMealContainer from "components/BestMealContainer";
+import MealContainer from "components/MealContainer";
+import { MOCK_SERVER_URL } from "constant";
 
 function App() {
   const [meals, setMeals] = useState({
