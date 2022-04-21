@@ -28,7 +28,7 @@ function MealContainer({ meals }) {
   return (
     <MealContainerStyled>
       <h2>{mealHeader}</h2>
-      {mealCards.length === 0 ? <Loader /> : <Carousel cards={mealCards} />}
+      {mealCards.length ? <Carousel cards={mealCards} /> : <Loader />}
     </MealContainerStyled>
   );
 }
