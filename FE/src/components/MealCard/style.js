@@ -1,18 +1,7 @@
 import styled from "styled-components";
 
-export const Card = styled.li`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-  img {
-    width: 300px;
-    height: 300px;
-  }
-`;
-
 export const DeliveryServiceHoverContainer = styled.div`
-  display: ${({ isShow }) => (isShow ? "flex" : "none")};
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -31,6 +20,20 @@ export const DeliveryServiceHoverContainer = styled.div`
     font-size: ${({ theme: { fontSize } }) => fontSize.medium};
     font-weight: ${({ theme: { fontWeight } }) => fontWeight.bold};
     margin: 8px 0;
+  }
+`;
+
+export const Card = styled.li`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  img {
+    width: 300px;
+    height: 300px;
+  }
+  &:hover ${DeliveryServiceHoverContainer} {
+    display: flex;
   }
 `;
 

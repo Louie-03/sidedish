@@ -5,12 +5,8 @@ import { Card, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContai
 
 const MealCard = ({ mealInfo }) => {
   const { productName, description, event: discountType, fixedPrice, image, originalPrice } = mealInfo;
-  const [showDeliverySerivce, setShowDeliverySerivce] = useState(false);
-  const handleShowDeliverySerivce = () => {
-    setShowDeliverySerivce((prev) => !prev);
-  };
   return (
-    <Card onMouseEnter={handleShowDeliverySerivce} onMouseLeave={handleShowDeliverySerivce}>
+    <Card>
       <img src={getMealImage(image)} alt={productName} />
       <CardInfo>
         <h4>{productName}</h4>
@@ -23,7 +19,7 @@ const MealCard = ({ mealInfo }) => {
           <DiscoutType isLaunchingDiscount={discountType === DISCOUNT_TYPE.launching}>{discountType}</DiscoutType>
         )}
       </CardInfo>
-      <DeliveryServiceHoverContainer isShow={showDeliverySerivce}>
+      <DeliveryServiceHoverContainer>
         <span>새벽배송</span>
         <SpanDivider />
         <span>전국택배</span>
