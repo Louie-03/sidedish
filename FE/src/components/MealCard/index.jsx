@@ -12,11 +12,6 @@ const MealCard = ({ mealInfo }) => {
   return (
     <Card onMouseEnter={handleShowDeliverySerivce} onMouseLeave={handleShowDeliverySerivce}>
       <img src={getMealImage(image)} alt={productName} />
-      <DeliveryServiceHoverContainer isShow={showDeliverySerivce}>
-        <span>새벽배송</span>
-        <SpanDivider />
-        <span>전국택배</span>
-      </DeliveryServiceHoverContainer>
       <CardInfo>
         <h4>{productName}</h4>
         <p>{description}</p>
@@ -28,6 +23,11 @@ const MealCard = ({ mealInfo }) => {
           <DiscoutType isLaunchingDiscount={discountType === DISCOUNT_TYPE.launching}>{discountType}</DiscoutType>
         )}
       </CardInfo>
+      <DeliveryServiceHoverContainer isShow={showDeliverySerivce}>
+        <span>새벽배송</span>
+        <SpanDivider />
+        <span>전국택배</span>
+      </DeliveryServiceHoverContainer>
     </Card>
   );
 };

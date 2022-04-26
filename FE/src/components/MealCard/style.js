@@ -4,6 +4,7 @@ export const Card = styled.li`
   position: relative;
   display: flex;
   flex-direction: column;
+  align-self: flex-start;
   img {
     width: 300px;
     height: 300px;
@@ -81,6 +82,7 @@ export const DiscoutType = styled.div`
   width: 76px;
   height: 30px;
   border-radius: 20px;
+  /* TODO: switch 문으로 바꾸기(분기처리에서 추가 속성이 추가될 수 있기 때문) */
   background-color: ${({ theme, isLaunchingDiscount }) =>
     isLaunchingDiscount ? theme.color.orange : theme.color.green};
   color: ${({ theme }) => theme.color.white};
