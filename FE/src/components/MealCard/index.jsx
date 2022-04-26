@@ -1,5 +1,5 @@
 import { DISCOUNT_TYPE } from "constants";
-import React, { useState } from "react";
+import React from "react";
 import { getMealImage } from "utils";
 import { Card, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContainer, SpanDivider } from "./style";
 
