@@ -1,12 +1,42 @@
 import styled from "styled-components";
 
 export const Card = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   img {
     width: 300px;
     height: 300px;
   }
+`;
+
+export const DeliveryServiceHoverContainer = styled.div`
+  display: ${({ isShow }) => (isShow ? "flex" : "none")};
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  /* TODO: figma 값을 그대로 복사했는데 매직넘버는 다시 고려해보기 */
+  width: 150px;
+  height: 150px;
+  top: 20px;
+  right: 20px;
+  background: rgba(248, 247, 247, 0.8);
+  border: 1px solid ${({ theme }) => theme.color.black};
+  box-sizing: border-box;
+  border-radius: 50%;
+  span {
+    color: ${({ theme }) => theme.color.black};
+    font-size: ${({ theme }) => theme.fontSize.medium};
+    font-weight: ${({ theme }) => theme.fontWeight.bold};
+    margin: 8px 0;
+  }
+`;
+
+export const SpanDivider = styled.div`
+  width: 50%;
+  height: 1px;
+  background-color: ${({ theme }) => theme.color.black};
 `;
 
 export const CardInfo = styled.div`
