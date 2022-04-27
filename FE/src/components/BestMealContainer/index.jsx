@@ -33,7 +33,6 @@ const BestMealContainer = () => {
   const fetchData = useCallback(async () => {
     try {
       const categoryType = findTargetTab(tabId);
-      console.log("categoryType :>> ", categoryType);
       const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=${categoryType}`, {
         validateStatus: (status) => {
           return status >= 200 && status < 300;
