@@ -15,7 +15,7 @@ const Header = styled.header`
   margin: 0 auto;
 `;
 
-function App() {
+const App = () => {
   return (
     <>
       <HeaderContainer>
@@ -25,6 +25,6 @@ function App() {
       <div className="Modal"></div>
     </>
   );
-}
+};
 
 export default App;
