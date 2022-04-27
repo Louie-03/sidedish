@@ -14,16 +14,26 @@ const BEST_TAB_TYPE = [
   { id: 313, title: "맛있는 제철 요리", apiParams: "season" },
   { id: 153, title: "우리 아이 영양 반찬", apiParams: "kids" },
 ];
-const DEFAULT_TAB_ID = 0;
+const DEFAULT_TAB_ID = 100;
 const BEST_MEAL_IMAGE_SIZE = 411;
 
 const BestMealContainer = () => {
   const [meals, setMeals] = useState([]);
   const [tabId, setTabId] = useState(DEFAULT_TAB_ID);
 
+  const findTargetTab = useCallback((id) => {
+    const targetTab = BEST_TAB_TYPE.find((tabObj) => tabObj.id === id);
+    if (!targetTab) {
+      return Error("해당 탭 정보가 없습니다.");
+    }
+    const categoryType = targetTab.apiParams;
+    return categoryType;
+  }, []);
+
   const fetchData = useCallback(async () => {
     try {
-      const categoryType = BEST_TAB_TYPE[tabId].apiParams;
+      const categoryType = findTargetTab(tabId);
+      console.log("categoryType :>> ", categoryType);
       const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=${categoryType}`, {
         validateStatus: (status) => {
           return status >= 200 && status < 300;
@@ -35,7 +45,7 @@ const BestMealContainer = () => {
       console.error(error);
       setMeals(MOCK_BEST_MEAT);
     }
-  }, [tabId]);
+  }, [findTargetTab, tabId]);
 
   useEffect(() => {
     fetchData();
