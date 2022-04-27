@@ -16,10 +16,10 @@ function getCarouselDesign(width, imageCount, imageSize) {
 }
 
 const IMAGE_COUNT = 4;
-const IMAGE_SIZE = 300;
+const MEAL_IMAGE_SIZE = 300;
 
 function Carousel({ cards }) {
-  const { gap, size } = getCarouselDesign(1280, IMAGE_COUNT, IMAGE_SIZE);
+  const { gap, size } = getCarouselDesign(1280, IMAGE_COUNT, MEAL_IMAGE_SIZE);
   return (
     <Container>
       <AngleLeft />

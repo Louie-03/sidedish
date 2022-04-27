@@ -1,12 +1,9 @@
-import React, { useCallback, useState } from "react";
-import { useEffect } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import axios from "axios";
-import BestMealCard from "components/BestMealCard";
 import Loader from "components/Loader";
-
-import { MOCK_BEST_MEAT } from "constants";
-import { CardContainer, Container, Divider, Header, Li, Nav, Tab, Title, TitleBadge } from "./style";
-import { MOCK_SERVER_URL } from "constants";
+import MealCard from "components/MealCard";
+import { MOCK_BEST_MEAT, MOCK_SERVER_URL } from "constants";
+import { CardContainer, Container, Divider, Header, Nav, Tab } from "./style";
 
 const BEST_TITLE_BADGE = "기획전";
 const BEST_TITLE = "한 번 주문하면 두 번 반하는 반찬";
@@ -18,6 +15,7 @@ const BEST_TAB_TYPE = [
   { id: 153, title: "우리 아이 영양 반찬", apiParams: "kids" },
 ];
 const DEFAULT_TAB_ID = 0;
+const BEST_MEAL_IMAGE_SIZE = 411;
 
 const BestMealContainer = () => {
   const [meals, setMeals] = useState([]);
@@ -50,7 +48,8 @@ const BestMealContainer = () => {
       </Tab>
     ));
 
-  const BestMealCards = () => meals.map(({ id, ...meal }) => <BestMealCard key={id} meal={meal} />);
+  const BestMealCards = () =>
+    meals.map(({ id, ...mealInfo }) => <MealCard key={id} mealInfo={mealInfo} size={BEST_MEAL_IMAGE_SIZE} />);
 
   return (
     <Container>
