@@ -1,6 +1,6 @@
 import React from "react";
 import MealCard from "components/MealCard";
-import { AngleLeft, AngleRigth, CarouselContainer, Container } from "./style";
+import { AngleLeft, AngleRight, CarouselContainer, Container } from "./style";
 
 const getCarouselDesign = (width, imageCount, imageSize) => {
   const size = imageSize;
@@ -28,7 +28,7 @@ const Carousel = ({ cards }) => {
           <MealCard key={id} mealInfo={mealInfo} size={size} />
         ))}
       </CarouselContainer>
-      <AngleRigth />
+      <AngleRight />
     </Container>
   );
 };
