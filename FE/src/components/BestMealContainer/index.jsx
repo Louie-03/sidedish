@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Loader from "components/Loader";
 import MealCard from "components/MealCard";
 import { CardContainer, Container, Divider, Header, Nav, Tab } from "./style";
@@ -16,17 +16,27 @@ const BEST_TAB_TYPE = [
 ];
 
 const BestMealContainer = () => {
-  const [bestTab, setBestTab] = useState(BEST_TAB_TYPE[0]);
+  const [activeTab, setActiveTab] = useState(BEST_TAB_TYPE[0]);
 
   const { response: meals } = useAxios({
     method: "get",
     url: `/products/best`,
-    params: { category: bestTab.apiParams },
+    params: { category: activeTab.apiParams },
   });
 
   const Tabs = () =>
     BEST_TAB_TYPE.map(({ id, title, apiParams }) => (
-      <Tab key={id} onClick={() => setBestTab({ id, title, apiParams })} isSelected={bestTab.id === id}>
+      <Tab
+        key={id}
+        onClick={() =>
+          setActiveTab({
+            id,
+            title,
+            apiParams,
+          })
+        }
+        isSelected={activeTab.id === id}
+      >
         {title}
       </Tab>
     ));
