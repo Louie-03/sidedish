@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import BestMealContainer from "components/BestMealContainer";
 import MealContainer from "components/MealContainer";
-import { MOCK_MAIN, MOCK_SERVER_URL } from "constants";
+import { MOCK_MAIN, API_SERVER_URL } from "constants";
 import { Container } from "./style";
 
 const Main = () => {
@@ -12,7 +12,7 @@ const Main = () => {
   });
   const fetchCategoryMeal = useCallback(async () => {
     try {
-      const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products?meal=main`, {
+      const { data } = await axios.get(`${API_SERVER_URL}/api/products?meal=main`, {
         validateStatus: (status) => {
           return status >= 200 && status < 300;
         },
