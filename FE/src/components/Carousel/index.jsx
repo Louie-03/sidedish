@@ -1,8 +1,7 @@
 import React, { useCallback, useState } from "react";
-import MealCard from "components/MealCard";
 import { AngleLeft, AngleRight, CarouselContainer, Container, IndexStatusContainer } from "./style";
 
-const getCarouselDesign = (width, imageCount, imageSize) => {
+const getCarouselChildrenGap = (width, imageCount, imageSize) => {
   const size = imageSize;
   let count = imageCount;
 
@@ -12,19 +11,16 @@ const getCarouselDesign = (width, imageCount, imageSize) => {
   }
   const gap = Math.floor((width - imageSize * count) / count);
   // BUG: gap값 구할 때 count가 1이면 Infinity가 출력 됨
-  return { gap, size };
+  return gap;
 };
 
 const DEFAULT_CAROUSEL_INDEX = 0;
-const IMAGE_COUNT = 4;
-const MEAL_IMAGE_SIZE = 300;
-const parentWidth = 1280;
 
 // FIXME: -1, +1 같은 매직넘버 줄어야할까요?
-const Carousel = ({ cards }) => {
-  const carouselLegnth = Math.ceil(cards.length / IMAGE_COUNT);
+const Carousel = ({ cards, parentWidth, imageCount, imageSize, children }) => {
+  const carouselLegnth = Math.ceil(cards.length / imageCount);
   const MAX_CAROUSEL_INDEX = carouselLegnth - 1;
-  const { gap, size } = getCarouselDesign(parentWidth, IMAGE_COUNT, MEAL_IMAGE_SIZE);
+  const gap = getCarouselChildrenGap(parentWidth, imageCount, imageSize);
   const [headIndex, setHeadIndex] = useState(DEFAULT_CAROUSEL_INDEX);
   const [currentDisplay, setCurrentDisplay] = useState(headIndex * parentWidth);
   const checkLimitIndex = useCallback(
@@ -37,7 +33,7 @@ const Carousel = ({ cards }) => {
       setCurrentDisplay(newIndex * parentWidth * -1);
       return newIndex;
     },
-    [MAX_CAROUSEL_INDEX]
+    [MAX_CAROUSEL_INDEX, parentWidth]
   );
   const moveLeft = useCallback(() => {
     setHeadIndex((prev) => checkLimitIndex(prev - 1));
@@ -52,11 +48,7 @@ const Carousel = ({ cards }) => {
         {Array(carouselLegnth).fill(<li></li>)}
       </IndexStatusContainer>
       <CarouselContainer gap={gap} currentDisplay={currentDisplay}>
-        <ul>
-          {cards.map(({ id, ...mealInfo }) => (
-            <MealCard key={id} mealInfo={mealInfo} size={size} />
-          ))}
-        </ul>
+        <ul>{children}</ul>
       </CarouselContainer>
       <AngleRight onClick={moveRight} gap={gap} />
     </Container>
