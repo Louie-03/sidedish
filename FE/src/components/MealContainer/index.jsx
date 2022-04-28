@@ -4,6 +4,7 @@ import Carousel from "components/Carousel";
 import { Container, Header } from "./style";
 
 const MealContainer = ({ meals }) => {
+  console.log("meals :>> ", meals);
   const { mealHeader, mealCards } = meals;
   return (
     <Container>
@@ -12,6 +13,5 @@ const MealContainer = ({ meals }) => {
     </Container>
   );
 };
-
 
 export default MealContainer;

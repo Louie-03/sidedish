@@ -1,43 +1,53 @@
 import React, { useCallback, useEffect, useState } from "react";
-import axios from "axios";
 import BestMealContainer from "components/BestMealContainer";
 import MealContainer from "components/MealContainer";
-import { MOCK_MAIN, API_SERVER_URL } from "constants";
-import { Container } from "./style";
+import { Container, MoreBtn } from "./style";
+import { useAxios } from "hooks/useAxios";
+
+const CATEGORY_TYPE = [
+  { id: 100, title: "든든한 메인 요리", apiParams: "main" },
+  { id: 200, title: "뜨끈한 국물요리", apiParams: "soup" },
+  { id: 300, title: "정갈한 밑반찬", apiParams: "side" },
+];
 
 const Main = () => {
-  const [meals, setMeals] = useState({
-    mealHeader: "",
-    mealCards: [],
-  });
-  const fetchCategoryMeal = useCallback(async () => {
-    try {
-      const { data } = await axios.get(`${API_SERVER_URL}/api/products?meal=main`, {
-        validateStatus: (status) => {
-          return status >= 200 && status < 300;
-        },
-      });
-      setMeals({
-        mealHeader: "식탁을 풍성하게 하는 정갈한 밑반찬",
-        mealCards: data,
-      });
-    } catch (error) {
-      console.error(error);
-      // BUG: 개발 과정에서 mock server나 api 에러가 났을 때 constant의 mock데이터 사용
-      setMeals({
-        mealHeader: "식탁을 풍성하게 하는 정갈한 밑반찬",
-        mealCards: MOCK_MAIN,
-      });
-    }
-  }, []);
+  const [currIndex, setCurrIndex] = useState(0);
 
-  useEffect(() => {
-    fetchCategoryMeal();
-  }, [fetchCategoryMeal]);
+  const { response: meals } = useAxios({
+    method: "get",
+    url: `/api/products`,
+    params: { meal: CATEGORY_TYPE[currIndex].apiParams },
+  });
+
+  const [mealsArr, setMealsArr] = useState([
+    {
+      mealHeader: CATEGORY_TYPE[currIndex].title,
+      mealCards: meals,
+    },
+  ]);
+  console.log("mealsArr :>> ", mealsArr);
+  console.log("meals", meals);
+
+  const addCardHandler = () => {
+    setCurrIndex((prev) => prev + 1);
+    setMealsArr((prev) => [
+      ...prev,
+      {
+        mealHeader: CATEGORY_TYPE[currIndex].title,
+        mealCards: meals,
+      },
+    ]);
+    console.log(mealsArr);
+  };
+
   return (
     <Container>
       <BestMealContainer />
-      <MealContainer meals={meals} />
+      {mealsArr.map((meals) => (
+        <MealContainer key={meals.mealHeader} meals={meals} />
+      ))}
+
+      {true ? <MoreBtn onClick={addCardHandler}>더 보기</MoreBtn> : <></>}
     </Container>
   );
 };
