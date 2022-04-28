@@ -4,6 +4,7 @@ import BestMealContainer from "components/BestMealContainer";
 import MealContainer from "components/MealContainer";
 import { MOCK_SERVER_URL } from "constants";
 import { Container } from "./style";
+import { CAROUSEL_DATA } from "constants";
 
 const Main = () => {
   const [meals, setMeals] = useState({
@@ -14,7 +15,7 @@ const Main = () => {
     try {
       const { data } = await axios.get(`${MOCK_SERVER_URL}/products?meal=main`, {
         validateStatus: (status) => {
-          return status >= 200 && status < 300;
+          return !(status >= 300);
         },
       });
       setMeals({
@@ -22,11 +23,14 @@ const Main = () => {
         mealCards: data,
       });
     } catch (error) {
+      setMeals({
+        mealHeader: "식탁을 풍성하게 하는 정갈한 밑반찬",
+        mealCards: CAROUSEL_DATA,
+      });
+
       console.error(error);
-      // BUG: 개발 과정에서 mock server나 api 에러가 났을 때 constant의 mock데이터 사용
     }
   }, []);
-
   useEffect(() => {
     fetchCategoryMeal();
   }, [fetchCategoryMeal]);
