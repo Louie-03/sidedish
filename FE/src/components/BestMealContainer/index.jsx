@@ -18,11 +18,7 @@ const BEST_TAB_TYPE = [
 const BestMealContainer = () => {
   const [bestTab, setBestTab] = useState(BEST_TAB_TYPE[0]);
 
-  const {
-    response: meals,
-    error,
-    loading,
-  } = useAxios({
+  const { response: meals } = useAxios({
     method: "get",
     url: `/api/products/best`,
     params: { category: bestTab.apiParams },
