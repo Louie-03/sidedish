@@ -56,8 +56,8 @@ const Main = () => {
       ) : (
         mealsArr.map(({ id, ...containerInfo }) => <MealContainer key={id} containerInfo={containerInfo} />)
       )}
-
-      {true ? <MoreBtn onClick={addCardHandler}>더 보기</MoreBtn> : <></>}
+      {/* FIXME: 매직 넘버 수정해야함 */}
+      {currIndex < 2 ? <MoreBtn onClick={addCardHandler}>더 보기</MoreBtn> : <></>}
     </Container>
   );
 };
