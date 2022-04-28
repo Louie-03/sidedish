@@ -30,7 +30,7 @@ export const useAxios = ({ method, url, params, config }) => {
 
   useEffect(() => {
     fetchData();
-  }, [params["category"]]);
-
+    // BUG:dependency에 객체를 넣으면 무한 루프
+  }, [JSON.stringify(params)]);
   return { response, error, loading };
 };
