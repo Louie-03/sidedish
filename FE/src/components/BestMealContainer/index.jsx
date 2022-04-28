@@ -2,7 +2,7 @@ import React, { useCallback, useState, useEffect } from "react";
 import axios from "axios";
 import Loader from "components/Loader";
 import MealCard from "components/MealCard";
-import { MOCK_BEST_MEAT, MOCK_SERVER_URL } from "constants";
+import { MOCK_SERVER_URL } from "constants";
 import { CardContainer, Container, Divider, Header, Nav, Tab } from "./style";
 
 const BEST_TITLE_BADGE = "기획전";
@@ -33,9 +33,8 @@ const BestMealContainer = () => {
   const fetchData = useCallback(async () => {
     try {
       const categoryType = findTargetTab(tabId);
-      const { data } = await axios.get(`${MOCK_SERVER_URL}/api/products/best?category=${categoryType}`, {
+      const { data } = await axios.get(`${MOCK_SERVER_URL}/products/best?category=${categoryType}`, {
         validateStatus: (status) => {
-
           return status >= 200 && status < 300;
         },
       });
@@ -43,7 +42,6 @@ const BestMealContainer = () => {
     } catch (error) {
       // BUG: 개발 과정에서 mock server나 api 에러가 났을 때 constant의 mock데이터 사용
       console.error(error);
-      setMeals(MOCK_BEST_MEAT);
     }
   }, [findTargetTab, tabId]);
 
