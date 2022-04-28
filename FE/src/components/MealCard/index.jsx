@@ -28,8 +28,8 @@ const MealCard = ({ mealInfo, size }) => {
           <span>{showOriginalPrice(originalPrice, fixedPrice)}</span>
         </PriceContainer>
         {discountType && <DiscoutType discountType={discountType}>{discountType}</DiscoutType>}
+        <DeliveryOnHover />
       </CardInfo>
-      <DeliveryOnHover />
     </Conatiner>
   );
 };
