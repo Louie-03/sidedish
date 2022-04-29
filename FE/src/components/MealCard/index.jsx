@@ -1,30 +1,51 @@
-import React from "react";
-import styled from "styled-components";
-import { setDefaultMealImage } from "util";
+import DetailModal from "components/DetailModal";
+import ModalPortal from "components/Portal";
+import React, { useState } from "react";
+import { changeNumberToKoreanLocale, getMealImage, showOriginalPrice } from "utils";
+import { Conatiner, CardInfo, DeliveryServiceHoverContainer, DiscoutType, PriceContainer, SpanDivider } from "./style";
 
-// TODO: style.js로 분리하기
-const MealCardStyled = styled.li`
-  display: flex;
-  flex-direction: column;
-  img {
-    width: 200px;
-    height: 200px;
-  }
-`;
+const DeliveryOnHover = () => (
+  <DeliveryServiceHoverContainer>
+    <span>새벽배송</span>
+    <SpanDivider />
+    <span>전국택배</span>
+  </DeliveryServiceHoverContainer>
+);
 
-function MealCard({ mealInfo }) {
-  const { productName, description, event, fixedPrice, image, originalPrice } = mealInfo;
+const MealCard = ({ mealInfo, size }) => {
+  const { id, productName, description, event: discountType, fixedPrice, image, originalPrice } = mealInfo;
+  const [isOpendModal, setIsOpendModal] = useState(false);
+
+  const openHandler = () => {
+    setIsOpendModal(true);
+  };
+
+  const closeHandler = () => {
+    setIsOpendModal(false);
+  };
+
   return (
-    <MealCardStyled>
-      <img src={setDefaultMealImage(image)} alt="food" />
-      <h4>{productName}</h4>
-      <p>{description}</p>
-      <div>
-        <span>{fixedPrice}</span>
-        <span>{originalPrice}</span>
-      </div>
-      <div>{event}</div>
-    </MealCardStyled>
+    <>
+      <Conatiner imageSize={size}>
+        <img id={id} src={getMealImage(image)} alt={productName} onClick={openHandler} />
+        <CardInfo>
+          <h3>{productName}</h3>
+          <p>{description}</p>
+          <PriceContainer>
+            <span>{changeNumberToKoreanLocale(fixedPrice)}</span>
+            <span>{showOriginalPrice(originalPrice, fixedPrice)}</span>
+          </PriceContainer>
+          {discountType && <DiscoutType discountType={discountType}>{discountType}</DiscoutType>}
+          <DeliveryOnHover />
+        </CardInfo>
+      </Conatiner>
+      {isOpendModal && (
+        <ModalPortal closePortal={closeHandler}>
+          <DetailModal detailId={id} />
+        </ModalPortal>
+      )}
+    </>
   );
-}
+};
+
 export default MealCard;
