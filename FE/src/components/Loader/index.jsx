@@ -1,7 +1,7 @@
 import React from "react";
 
-const Loader = () => {
+function Loader() {
   return <div>반찬이 없어요 😊...</div>;
-};
+}
 
 export default Loader;
