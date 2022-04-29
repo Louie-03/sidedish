@@ -3,6 +3,7 @@ package sidedish.com.controller;
 import static sidedish.com.config.GitHubOAuthUtils.*;
 
 import java.net.URI;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class LoginController {
 	}
 
 	@GetMapping("/login/callback")
-	public ResponseEntity<Object> login(@RequestParam String code, HttpSession session) {
+	public ResponseEntity<Object> login(@RequestParam String code, HttpSession session, HttpServletRequest request) {
 		UserResponse user = loginService.login(code);
 		session.setAttribute("userId", user.getId());
 
@@ -39,14 +40,16 @@ public class LoginController {
 //		return user;
 		return ResponseEntity.status(HttpStatus.SEE_OTHER)
 			.location(URI.create(DNS_NAME))
+			.header("origin", request.getRequestURI())
 			.build();
 	}
 
 	@GetMapping("/logout")
-	public ResponseEntity<Object> logout(HttpSession session) {
+	public ResponseEntity<Object> logout(HttpSession session, HttpServletRequest request) {
 		session.invalidate();
 		return ResponseEntity.status(HttpStatus.SEE_OTHER)
 			.location(URI.create(DNS_NAME))
+			.header("origin", request.getRequestURI())
 			.build();
 	}
 }
