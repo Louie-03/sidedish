@@ -6,6 +6,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import sidedish.com.interceptor.CorsInterceptor;
 import sidedish.com.interceptor.LoginInterceptor;
 
 @Configuration
@@ -25,7 +26,13 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new CorsInterceptor())
+			.addPathPatterns("/**")
+			.order(1);
+
 		registry.addInterceptor(new LoginInterceptor())
+			.order(2)
 			.addPathPatterns("/api/products/*/order");
+
 	}
 }
