@@ -10,7 +10,10 @@
 | 🤖 BE | [루이](https://github.com/Louie-03) | 해맑은 막내 루이입니다~! |
 | 🤖 BE | [쿠킴](https://github.com/ku-kim) | 사이드 디쉬는 쉪이 쿠킴하겠습니다. |
 
-## 🛠 Tech
+
+---
+
+## 🛠 Tech Stack
 
 ### 🌐 Front-End
 
@@ -29,11 +32,19 @@
 
 ---
 
-### 📚 Docs
+## 📚 Docs
 
 - [WIKI](https://github.com/Louie-03/sidedish/wiki)
 
 ---
+
+## 📝 License
+
+- [MIT License](https://github.com/facebook/react/blob/main/LICENSE)
+
+---
+
+
 
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLouie-03%2Fsidedish&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
