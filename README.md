@@ -11,7 +11,6 @@
 | 🤖 BE | [루이](https://github.com/Louie-03)   | 해맑은 막내 루이입니다~!           |
 | 🤖 BE | [쿠킴](https://github.com/ku-kim)     | 사이드 디쉬는 쉪이 쿠킴하겠습니다. |
 
----
 
 ## 🛠 Tech Stack
 
@@ -23,13 +22,20 @@
 
 <img src="https://img.shields.io/badge/Java-007396?style=flat&logo=Java&logoColor=white"/> <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=Spring&logoColor=white"/> <img src="https://img.shields.io/badge/NGINX-009639?style=flat&logo=NGINX&logoColor=white"/> <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat&logo=Amazon AWS&logoColor=white"/> <img src="https://img.shields.io/badge/JUnit5-25A162?style=flat&logo=JUnit5&logoColor=white"/>
 
----
+
+## 🚀 Story
+
+###  Demo View
+
+![찐막-low](https://user-images.githubusercontent.com/72546335/166303410-cded09e8-25e5-40ce-b364-143d2e661ef3.gif)
+
+
+
 
 ## 📚 Docs
 
 - [WIKI](https://github.com/Louie-03/sidedish/wiki)
 
----
 
 ## 📝 License
 
